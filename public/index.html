@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/uv/uv.bundle.js"></script>
+        <script src="/uv/uv.config.js"></script>
+
+        <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/uv/sw.js", {
+                    scope: __uv$config.prefix,
+                });
+            });
+        }
+        </script>
+
+        <link rel="stylesheet" href="example.css">
+    </head>
+    <body>
+        <input type="text" id="urlInput" placeholder="Enter URL here">
+        <button id="searchButton">Search Text</button>
+
+        <iframe id="iframeWindow" class="iframeWindow"></iframe>
+    </body>
+    <script src="example.js"></script>
+</html>
