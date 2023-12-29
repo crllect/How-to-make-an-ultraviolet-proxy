@@ -115,7 +115,7 @@ After:
   "type": "module"
 }
 ```
-- **Note**: don't forget the comma after the ending curly bracket of `dpendancies`
+- **Note**: don't forget the comma after the ending curly bracket of `dependencies`
 
 **Every time you start it up**:
 You can start it by typing `node server.js` into the terminal window, you can now visit it localy by typing `localhost:Port` into a web browser
