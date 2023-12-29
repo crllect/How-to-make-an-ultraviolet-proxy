@@ -90,16 +90,21 @@ document.getElementById("searchButton").onclick = function (event) {
 
 **Only do this the first time**:
 1. Open a terminal in the directory of your project in VSCode, this is as easy and `ctrl-shift-C` on your project, and run `npm i @tomphttp/bare-server-node express`
+
+- **Note**: Renaming the template after running the next command will cause it to stop working. Rename the template to your repository name before runnng `npm i @tomphttp/bare-server-node express`. If you want to rename it after uninstall using npm or delete the package files and the node_modules directory
+
 2. Add `"type": "module"` to `package.json`. Example:
+
 Before
 ```json
 {
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
     "express": "^4.18.2"
-  },
+  }
 }
 ```
+
 After:
 ```json
 {
@@ -110,7 +115,7 @@ After:
   "type": "module"
 }
 ```
-- **Note**: don't forget the comma after the ending curly bracket of `dpendancies`
+- **Note**: don't forget the comma after the ending curly bracket of `dependencies`
 
 **Every time you start it up**:
 You can start it by typing `node server.js` into the terminal window, you can now visit it localy by typing `localhost:Port` into a web browser
