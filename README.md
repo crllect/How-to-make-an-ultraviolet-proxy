@@ -91,6 +91,7 @@ document.getElementById("searchButton").onclick = function (event) {
 **Only do this the first time**:
 1. Open a terminal in the directory of your project in VSCode, this is as easy and `ctrl-shift-C` on your project, and run `npm i @tomphttp/bare-server-node express`
 2. Add `"type": "module"` to `package.json`. Example:
+3. 
 Before
 ```json
 {
@@ -100,6 +101,7 @@ Before
   },
 }
 ```
+
 After:
 ```json
 {
