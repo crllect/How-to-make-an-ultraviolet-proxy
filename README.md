@@ -101,7 +101,7 @@ Before
   "dependencies": {
     "@tomphttp/bare-server-node": "^2.0.1",
     "express": "^4.18.2"
-  },
+  }
 }
 ```
 
