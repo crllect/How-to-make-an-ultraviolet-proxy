@@ -93,9 +93,10 @@ document.getElementById("searchButton").onclick = function (event) {
 
 - **Note**: Renaming the template after running the next command will cause it to stop working. Rename the template to your repository name before runnng `npm i @tomphttp/bare-server-node express`. If you want to rename it after uninstall using npm or delete the package files and the node_modules directory
 
+
 2. Add `"type": "module"` to `package.json`. Example:
 
-Before
+Before:
 ```json
 {
   "dependencies": {
