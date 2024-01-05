@@ -122,3 +122,27 @@ After:
 You can start it by typing `node server.js` into the terminal window, you can now visit it localy by typing `localhost:Port` into a web browser
 
 - **Note**: The default port is 8080 
+
+## Step 6: Deploying It
+
+There are infinately many ways to do this, replit does not any form of proxies, and has spotty uptime, so that will usually be a no-go. Many hosts such as vercel and cloudflare are static hosts, meaning they cant support the backend logic required for UltraViolet.
+**Solution**: A solution I have found is to use either a bare metal or cheap online service to host the bare server, and something like cloudflare or vercel to host the frontend
+
+ - **Note**: If you end up using two seperate services for front end and backend, then you need to go to `public/uv/uv.config.js` and change the bare server to your bare server.
+**Example**:
+```js
+/*global Ultraviolet*/
+self.__uv$config = {
+    prefix: '/uv/service/',
+    bare: 'INSERT YOUR BARE SERVER HERE, IF IN THE SAME SERVICE AS FRONTEND PUT: /bare/ IF AN EXTERNAL SERVICE: https://link.external.service/bare/',
+    encodeUrl: Ultraviolet.codec.xor.encode,
+    decodeUrl: Ultraviolet.codec.xor.decode,
+    handler: '/uv/uv.handler.js',
+    client: '/uv/uv.client.js',
+    bundle: '/uv/uv.bundle.js',
+    config: '/uv/uv.config.js',
+    sw: '/uv/uv.sw.js',
+};
+```
+--
+## **Note**: Step 6 is not fully complete
