@@ -144,5 +144,5 @@ self.__uv$config = {
     sw: '/uv/uv.sw.js',
 };
 ```
---
+---
 ## **Note**: Step 6 is not fully complete
