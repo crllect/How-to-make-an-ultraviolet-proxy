@@ -9,8 +9,10 @@ Start by downloading the template available in this repository.
 ## Step 2: Clone Ultraviolet
 
 1. Clone the most recent version of Ultraviolet from [here](https://github.com/titaniumnetwork-dev/Ultraviolet/releases). You can either build it yourself or download the `.tgz` file.
-2. Unzip the downloaded file. (Note that on windows, you cant extract `.tgz` files without win-rar, 7zip or any other program. Search up "tgz to zip", and then convert it to extract it)
-3. Inside the `dist` directory, download all `.js` files and place them in `public/uv`.
+2. Unzip the downloaded file. (Note that on windows, you cant extract `.tgz` files without win-rar, 7zip or any other program.
+   
+   Search up "tgz to zip" online, and then convert it to zip so you can extract it)
+3. Inside the `dist` directory (`titaniumnetwork-dev-ultraviolet-x.x.x/package/dist`), download all `.js` files and place them in `public/uv`.
 
 - **Note**: I have attached my own modified UV files, but they may be out of date. If you dont want to clone and build everything, just use my files
 
