@@ -73,7 +73,7 @@ document // makes it so you can press enter to submit as opposed to just being a
 document.getElementById("searchButton").onclick = function (event) {
     event.preventDefault();
 
-    let url = document.getElementById("urlInput").value; // If no periods are detected in the input, search google instead
+    let url = document.getElementById("urlInput").value; // if no periods are detected in the input, search google instead
     let searchUrl = "https://www.google.com/search?q=";
 
     if (!url.includes(".")) {
