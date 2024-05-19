@@ -2,6 +2,10 @@
 
 This guide covers the setup of Ultraviolet (UV), including creating a new frontend or integrating an existing one. If you need assistance, feel free to DM me on Discord @crllect.
 
+## PREFACE
+
+This is for guide pre-2.0 UV. If you need help with ^2.0, join the [Titanium Network discord](https://discord.gg/unblock). Again, contact me on discord if you need help with anything. I am usually active from from 7 pm est to 11:30 pm est.
+
 ## Step 1: Download the Template
 
 Start by downloading the template available in this repository.
@@ -127,16 +131,26 @@ You can start it by typing `node server.js` into the terminal window, you can no
 
 ## Step 6: Deploying It
 
-There are infinately many ways to do this, replit does not any form of proxies, and has spotty uptime, so that will usually be a no-go. Many hosts such as vercel and cloudflare are static hosts, meaning they cant support the backend logic required for UltraViolet.
-**Solution**: A solution I have found is to use either a bare metal or cheap online service to host the bare server, and something like cloudflare or vercel to host the frontend
+There are infinately many ways to do this, replit does not any form of proxies, and has spotty uptime when you can get it to work, so that will usually be a no-go. Many hosts such as vercel are static hosts, meaning they cant support the backend logic required for UltraViolet (atleast on paper).
+
+
+**Solution 1**: In vercel and render (I havent tested render), you can make server file (usually `index.js` or `server.js`) not just host the uv backend, but instead also host some basic express routes such as `/` and `/index`. You can make those routes point to things in your public folder.
+
+**Example of Solution 1**: https://github.com/crll3ct/UV-in-one-url
+
+
+**Solution  2**: A solution I have found is to use either a bare metal or cheap online service to host the bare server, and something like vercel to host the frontend
+
+**Example of Solution 2**: https://github.com/crllect/focus-bare
 
  - **Note**: If you end up using two seperate services for front end and backend, then you need to go to `public/uv/uv.config.js` and change the bare server to your bare server.
+
 **Example**:
 ```js
 /*global Ultraviolet*/
 self.__uv$config = {
     prefix: '/uv/service/',
-    bare: 'INSERT YOUR BARE SERVER HERE, IF IN THE SAME SERVICE AS FRONTEND PUT: /bare/ IF AN EXTERNAL SERVICE: https://link.external.service/bare/',
+    bare: 'INSERT YOUR BARE SERVER HERE',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/uv/uv.handler.js',
@@ -147,4 +161,4 @@ self.__uv$config = {
 };
 ```
 ---
-## **Note**: Step 6 is not fully complete
+
