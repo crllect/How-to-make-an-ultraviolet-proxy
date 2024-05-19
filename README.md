@@ -4,7 +4,7 @@ This guide covers the setup of Ultraviolet (UV), including creating a new fronte
 
 ## PREFACE
 
-This is for guide pre-2.0 UV. If you need help with ^2.0, join the [Titanium Network discord](https://discord.gg/unblock). Again, contact me on discord if you need help with anything. I am usually active from from 7 pm est to 11:30 pm est.
+This is for guide pre-2.0 UV. If you need help with ^2.0, join the [Titanium Network discord](https://discord.gg/unblock). Again, contact me on discord (@crllect) if you need help with anything. I am usually active from from 7 pm est to 11:30 pm est.
 
 ## Step 1: Download the Template
 
