@@ -10,18 +10,25 @@ This is for guide pre-2.0 UV. If you need help with ^2.0, join the [Titanium Net
 
 Start by downloading the template available in this repository.
 
-## Step 2: Clone Ultraviolet
+## Step 2: Get the Ultraviolet Files
 
-1. Clone the most recent version of Ultraviolet from [here](https://github.com/titaniumnetwork-dev/Ultraviolet/releases). You can either build it yourself or download the `.tgz` file.
-2. Unzip the downloaded file.
-   
-- **Note**: On windows, you cant extract `.tgz` files without win-rar, 7zip or any other program.
-  
-- **Note**: If you dont want to install anything search up "tgz to zip" online, and then convert it. Unzip the file normally
-  
-4. Inside the `dist` directory (`titaniumnetwork-dev-ultraviolet-x.x.x/package/dist`), download all `.js` files and place them in `public/uv`.
+### a. Use my files in the template
 
-- **Note**: I have attached my own modified UV files, but they may be out of date. If you dont want to clone and build everything, just use my files
+I have attached my own UV files, but they may be out of date. If you dont want to clone and build everything or unzip some files, just use my files
+
+(so dont modify the template)
+
+### b. Download pre-2.0 Files From the Ultraviolet GitHub
+
+1. Delete the UV files in the template
+
+2. Clone the most recent version of Ultraviolet that is **pre-2.0** from [here](https://github.com/titaniumnetwork-dev/Ultraviolet/releases). You can either build it yourself or download the `.tgz` file.
+
+3. Unzip the downloaded file.
+
+- **Note**: If you are having issues unzipping the file, search "tgz to zip" online, and then convert it. Unzip the file normally
+  
+4. Inside the `dist` directory (`titaniumnetwork-dev-ultraviolet-x.x.x/package/dist`), download all `.js` files and place them in `public/uv`. All of the `.map` files are used for unminifying the other UV files. If you dont plan on modifying the UV files, you dont need to download the `.map` files.
 
 ## Step 3: Adding Frontend
 
@@ -98,13 +105,13 @@ document.getElementById("searchButton").onclick = function (event) {
 ## Step 5: Building It
 
 **Only do this the first time**:
-1. Open a terminal in the directory of your project in VSCode, this is as easy and `ctrl-shift-C` on your project, and run `npm i @tomphttp/bare-server-node express`
+1. Open a terminal in the directory of your project in VSCode, this is as easy and `ctrl-shift-C` on your project, and run `npm i`
 
-- **Note**: Renaming the template after running the next command will cause it to stop working. Rename the template to your repository name before runnng `npm i @tomphttp/bare-server-node express`. If you want to rename it after uninstall using npm or delete the package files and the node_modules directory
+- **Note**: Renaming the template after running the next command map cause it to stop working. If you rename the template you can just run `npm i` again it should fix itself
 
 
 2. Add `"type": "module"` to `package.json`. Example:
-
+   ### Only if you didnt use my package.json
 Before:
 ```json
 {
@@ -134,7 +141,7 @@ You can start it by typing `node server.js` into the terminal window, you can no
 
 ## Step 6: Deploying It
 
-There are infinately many ways to do this, replit does not any form of proxies, and has spotty uptime when you can get it to work, so that will usually be a no-go. Many hosts such as vercel are static hosts, meaning they cant support the backend logic required for UltraViolet (atleast on paper).
+There are infinitely many ways to do this, replit does not any form of proxies, and has spotty uptime when you can get it to work, so that will usually be a no-go. Many hosts such as vercel are static hosts, meaning they cant support the backend logic required for UltraViolet (atleast on paper).
 
 
 **Solution 1**: In vercel and render (I havent tested render), you can make server file (usually `index.js` or `server.js`) not just host the uv backend, but instead also host some basic express routes such as `/` and `/index`. You can make those routes point to things in your public folder.
@@ -149,6 +156,7 @@ There are infinately many ways to do this, replit does not any form of proxies, 
  - **Note**: If you end up using two seperate services for front end and backend, then you need to go to `public/uv/uv.config.js` and change the bare server to your bare server.
 
 **Example**:
+### `uv.config.js`
 ```js
 /*global Ultraviolet*/
 self.__uv$config = {
