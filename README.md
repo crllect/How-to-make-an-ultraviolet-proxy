@@ -1,6 +1,6 @@
-# How to Set Up Ultraviolet in Your Own Proxy
+# How to make a Ultraviolet proxy, or connect it with your frontend
 
-This guide covers the setup of Ultraviolet (UV), including creating a new frontend or integrating an existing one. If you need assistance, feel free to DM me on Discord @crllect.
+This guide covers the setup of Ultraviolet (UV), including creating a new basic frontend or integrating your existing one. If you need assistance, feel free to DM me on Discord @crllect.
 
 ## PREFACE
 
