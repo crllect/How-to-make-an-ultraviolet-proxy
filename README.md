@@ -1,64 +1,54 @@
 # How to make a Ultraviolet proxy, or connect it with your frontend
 
-This guide covers the setup of Ultraviolet (UV), including creating a new basic frontend or integrating your existing one. If you need assistance, feel free to DM me on Discord @crllect.
+This guide covers the setup of Ultraviolet (UV), including creating a new basic frontend or integrating your existing one. If you need assistance, feel free to DM me on Discord @crllect. Huge thanks to @percslol for help with setting up UV and migrating to 3.x.x
 
-## PREFACE
+## How Ultraviolet Actually Works
 
-This is for guide pre-2.0 UV. If you need help with ^2.0, join the [Titanium Network discord](https://discord.gg/unblock). Again, contact me on discord (@crllect) if you need help with anything. I am usually active from from 7 pm est to 11:30 pm est.
+UV has a service worker that handles requests, it also has a rewriter, it intercepts all requests and rewrites them, then returns them. This is called an interception proxy. A bare or wisp server can be hosted, and when a request is sent to the client, it forwards that request to the bare/wisp server, and it gets sent back to ultraviolet so can rewrite and handle that request and serve it back to you.
+
+TL;DR: UV has route.
+
 
 ## Step 1: Download the Template
 
-Start by downloading the template available in this repository.
+Clone the template or fork the repo
 
-## Step 2: Get the Ultraviolet Files
+## Step 2: Adding/Integrating Frontend
 
-### a. Use my files in the template
-
-I have attached my own UV files, but they may be out of date. If you dont want to clone and build everything or unzip some files, just use my files
-
-(so dont modify the template)
-
-### b. Download pre-2.0 Files From the Ultraviolet GitHub
-
-1. Delete the UV files in the template
-
-2. Clone the most recent version of Ultraviolet that is **pre-2.0** from [here](https://github.com/titaniumnetwork-dev/Ultraviolet/releases). You can either build it yourself or download the `.tgz` file.
-
-3. Unzip the downloaded file.
-
-- **Note**: If you are having issues unzipping the file, search "tgz to zip" online, and then convert it. Unzip the file normally
-  
-4. Inside the `dist` directory (`titaniumnetwork-dev-ultraviolet-x.x.x/package/dist`), download all `.js` files and place them in `public/uv`. All of the `.map` files are used for unminifying the other UV files. If you dont plan on modifying the UV files, you dont need to download the `.map` files.
-
-## Step 3: Adding Frontend
+### Adding (a)
 
 Place all your frontend code, including assets, inside the `public` directory of the template.
+
+The template, by default has some basic code that shows how to setup a frontend, a backend, and some clientside code that should always be running.
 
 - **Note**: The `.gitignore` in the template already excludes node modules.
 - Open the `server.js` file in the template and modify it according to the instructions provided in the file.
 
-## Step 4: Frontend Integration
+### Integrating (b)
 
 In your html, add the following to `<head>`
 ```html
 <script src="/uv/uv.bundle.js"></script>
 <script src="/uv/uv.config.js"></script>
+<script src="/baremux/index.js"></script>
 
 <script>
-  if ("serviceWorker" in navigator) {
+if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/uv/sw.js", {
-        scope: __uv$config.prefix,
-      });
+        navigator.serviceWorker.register("sw.js");
     });
-  }
+}
 </script>
 ```
 
-Now, if you know what your doing, in your JS, all you need to do is this:
+## **IMPORTANT**: Only Use UV Inside of an iFrame
+
+### Now, if you know what your doing, in your JS, all you need to do is this:
 `location.href = __uv$config.prefix + __uv$config.encodeUrl(url);`
 
-If that didn't make sense, its ok.
+### If you dont:
+
+*its ok.*
 
 Im going go ahead and assume you know the basics of html and css,
 
@@ -75,6 +65,9 @@ Then add a text input to your html:
 
 add this to your JS, if you changed the class or ID name, change it in here too:
 ```js
+const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
+const wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+const bareUrl = (location.protocol === "https:" ? "https" : "http") + "://" + location.host + "/bare/"
 document // makes it so you can press enter to submit as opposed to just being able to press a button
     .getElementById("urlInput")
     .addEventListener("keydown", function (event) {
@@ -84,7 +77,7 @@ document // makes it so you can press enter to submit as opposed to just being a
         }
     });
 
-document.getElementById("searchButton").onclick = function (event) {
+document.getElementById("searchButton").onclick = async function (event) {
     event.preventDefault();
 
     let url = document.getElementById("urlInput").value; // if no periods are detected in the input, search google instead
@@ -97,10 +90,42 @@ document.getElementById("searchButton").onclick = function (event) {
             url = "https://" + url;
         }
     }
-
+	let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+	if (!await connection.getTransport()) {
+		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+	}
     iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
 };
 ```
+## Step 4: Switching connections
+
+One of the most impressive features of UV 3.x.x is the ability to switch connections, so how is this actually done?
+
+Have something like this in your html somewhere
+```html
+<select id="switcher">
+    <option value="">--Please Choose an Option--</option>
+    <option value="epoxy">Epoxy</option>
+    <option value="bare">Bare</option>
+</select>
+```
+
+and something like this in your js
+
+```js
+document.getElementById("switcher").onselect = async function (event) {
+    switch (event.target.value) {
+        case "epoxy":
+            await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+            break;
+        case "bare":
+            await connection.setTransport("/baremod/index.mjs", [bareUrl]);
+            break;
+    }
+}
+```
+
+Whats actually happening here, is that your html is showing a dropdown with the options Epoxy and Bare, and this peice of js simply looks through any given page to see if that drop down is present, if it is, it will switch from bare or epoxy depending on what you set it too. It defaults to epoxy.
 
 ## Step 5: Building It
 
@@ -116,7 +141,12 @@ Before:
 ```json
 {
   "dependencies": {
-    "@tomphttp/bare-server-node": "^2.0.1",
+    "@titaniumnetwork-dev/ultraviolet": "^3.2.6",
+    "@tomphttp/bare-server-node": "^2.0.3",
+    "wisp-server-node": "^1.1.3",
+    "@mercuryworkshop/bare-mux": "^2.0.3",
+    "@mercuryworkshop/epoxy-transport": "^2.1.3",
+    "@mercuryworkshop/bare-as-module3": "^2.2.2",
     "express": "^4.18.2"
   }
 }
@@ -126,7 +156,12 @@ After:
 ```json
 {
   "dependencies": {
-    "@tomphttp/bare-server-node": "^2.0.1",
+    "@titaniumnetwork-dev/ultraviolet": "^3.2.6",
+    "@tomphttp/bare-server-node": "^2.0.3",
+    "wisp-server-node": "^1.1.3",
+    "@mercuryworkshop/bare-mux": "^2.0.3",
+    "@mercuryworkshop/epoxy-transport": "^2.1.3",
+    "@mercuryworkshop/bare-as-module3": "^2.2.2",
     "express": "^4.18.2"
   },
   "type": "module"
@@ -137,39 +172,13 @@ After:
 **Every time you start it up**:
 You can start it by typing `node server.js` into the terminal window, you can now visit it localy by typing `localhost:Port` into a web browser
 
-- **Note**: The default port is 8080 
+- **Note**: The default port is 8080
 
 ## Step 6: Deploying It
 
-There are infinitely many ways to do this, replit does not any form of proxies, and has spotty uptime when you can get it to work, so that will usually be a no-go. Many hosts such as vercel are static hosts, meaning they cant support the backend logic required for UltraViolet (atleast on paper).
+*ur fucked ur broke*
 
+You cant use websockets on vercel, so you *can* use bare on vercel, but to be completely honest, its not worth it if you want to use UV 3.x.x. The entire appeal of UV 3.x.x is being able to switch bare clients and moving to a more secure system like wisp, which cannot be done in vercel due to the lack of support for websockets because of vercel being a serverless platform.
 
-**Solution 1**: In vercel and render (I havent tested render), you can make server file (usually `index.js` or `server.js`) not just host the uv backend, but instead also host some basic express routes such as `/` and `/index`. You can make those routes point to things in your public folder.
-
-**Example of Solution 1**: https://github.com/crll3ct/UV-in-one-url
-
-
-**Solution  2**: A solution I have found is to use either a bare metal or cheap online service to host the bare server, and something like vercel to host the frontend
-
-**Example of Solution 2**: https://github.com/crllect/focus-bare
-
- - **Note**: If you end up using two seperate services for front end and backend, then you need to go to `public/uv/uv.config.js` and change the bare server to your bare server.
-
-**Example**:
-### `uv.config.js`
-```js
-/*global Ultraviolet*/
-self.__uv$config = {
-    prefix: '/uv/service/',
-    bare: 'INSERT YOUR BARE SERVER HERE',
-    encodeUrl: Ultraviolet.codec.xor.encode,
-    decodeUrl: Ultraviolet.codec.xor.decode,
-    handler: '/uv/uv.handler.js',
-    client: '/uv/uv.client.js',
-    bundle: '/uv/uv.bundle.js',
-    config: '/uv/uv.config.js',
-    sw: '/uv/uv.sw.js',
-};
-```
----
-
+My recomendation for deploying on vercel, is to use this guide (also by me):
+https://github.com/crllect/UV-in-one-url

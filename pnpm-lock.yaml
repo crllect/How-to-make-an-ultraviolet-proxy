@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@mercuryworkshop/bare-as-module3':
+        specifier: ^2.2.2
+        version: 2.2.2
       '@mercuryworkshop/bare-mux':
         specifier: ^2.0.3
         version: 2.0.3
@@ -17,6 +20,9 @@ importers:
       '@titaniumnetwork-dev/ultraviolet':
         specifier: ^3.2.6
         version: 3.2.6
+      '@tomphttp/bare-server-node':
+        specifier: ^2.0.3
+        version: 2.0.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       express:
         specifier: ^4.18.2
         version: 4.19.2
@@ -25,6 +31,9 @@ importers:
         version: 1.1.3
 
 packages:
+
+  '@mercuryworkshop/bare-as-module3@2.2.2':
+    resolution: {integrity: sha512-Ds8981SmI1DQp1mDCVax1x0I5mH2dR1tYKytW7xTjlnpsfwn3RzQDiVJHUCrpc7cWGCe+7mHCF3EoMjM3hFfvQ==}
 
   '@mercuryworkshop/bare-mux@2.0.3':
     resolution: {integrity: sha512-xpillg9LCyqLmN+DCsQ3RXeA1QhmIbiHq6F/HyhSFJGddhS0tU5VjIaC8FnlwK8NAj688wU5M0PZJ7iB4TTR4Q==}
@@ -122,6 +131,11 @@ packages:
   '@titaniumnetwork-dev/ultraviolet@3.2.6':
     resolution: {integrity: sha512-kMyUdXBWKIOjO/0sGlj/uTNjNK2/3dn+gnhlBTs/CB3EPUPD+DAKnH99yYqBs0R+YE0Hjm54pCyBHY7ztq6iOQ==}
 
+  '@tomphttp/bare-server-node@2.0.3':
+    resolution: {integrity: sha512-IGzZspDwzto+oPsvlV99OALJKH3X1nRWnpBE8EY6nrqu5I83xw3uSUacEdHNnW4rXG0IQ8vZwMH87VOMoArJ3A==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
@@ -138,9 +152,16 @@ packages:
   array-flatten@1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
 
+  async-exit-hook@2.0.1:
+    resolution: {integrity: sha512-NW2cX8m1Q7KPA7a5M2ULQeZ2wR5qI5PAbw5L0UOMxdioVk9PMZ0h1TmyZEkPYrCvYjDlFICusOu1dlEKAAeXBw==}
+    engines: {node: '>=0.12.0'}
+
   body-parser@1.20.2:
     resolution: {integrity: sha512-ml9pReCu3M61kGlqoTm2umSXTlRTuGTx0bfYj+uIUKKYycG5NtSbeetV3faSU6R7ajOPw0g/J1PvK4qNy7s5bA==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+
+  buffer-from@1.1.2:
+    resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
   bufferutil@4.0.8:
     resolution: {integrity: sha512-4T53u4PdgsXqKaIctwF8ifXlRTTmEPJ8iEPWFdGZvcf7sbwYo6FKFEX9eNNAnzFZ7EzJAQ3CJeOtCRA4rDp7Pw==}
@@ -157,6 +178,10 @@ packages:
   call-bind@1.0.7:
     resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
     engines: {node: '>= 0.4'}
+
+  commander@10.0.1:
+    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
+    engines: {node: '>=14'}
 
   commondir@1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
@@ -195,6 +220,10 @@ packages:
   destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+
+  dotenv@16.4.5:
+    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
+    engines: {node: '>=12'}
 
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
@@ -302,6 +331,10 @@ packages:
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
+
+  ipaddr.js@2.2.0:
+    resolution: {integrity: sha512-Ag3wB2o37wslZS19hZqorUnrnzSkpOVy+IiiDEiTqNubEYpYuHWIf6K4psgN2ZWKExS4xhVCrRVfb/wfW8fWJA==}
+    engines: {node: '>= 10'}
 
   is-core-module@2.15.0:
     resolution: {integrity: sha512-Dd+Lb2/zvk9SKy1TGCt1wFJFo/MWBPMX5x7KcvLajWTGuomczdQX61PvY5yK6SVACwpoexWo81IfFyoKY2QnTA==}
@@ -475,6 +508,13 @@ packages:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
     engines: {node: '>= 0.4'}
 
+  source-map-support@0.5.21:
+    resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
+
+  source-map@0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+
   statuses@2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
@@ -538,6 +578,10 @@ packages:
         optional: true
 
 snapshots:
+
+  '@mercuryworkshop/bare-as-module3@2.2.2':
+    dependencies:
+      typescript: 5.5.4
 
   '@mercuryworkshop/bare-mux@2.0.3': {}
 
@@ -608,6 +652,19 @@ snapshots:
 
   '@titaniumnetwork-dev/ultraviolet@3.2.6': {}
 
+  '@tomphttp/bare-server-node@2.0.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
+    dependencies:
+      async-exit-hook: 2.0.1
+      commander: 10.0.1
+      dotenv: 16.4.5
+      http-errors: 2.0.0
+      ipaddr.js: 2.2.0
+      source-map-support: 0.5.21
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   '@types/estree@1.0.5': {}
 
   '@types/node@20.14.11':
@@ -624,6 +681,8 @@ snapshots:
       negotiator: 0.6.3
 
   array-flatten@1.1.1: {}
+
+  async-exit-hook@2.0.1: {}
 
   body-parser@1.20.2:
     dependencies:
@@ -642,6 +701,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  buffer-from@1.1.2: {}
+
   bufferutil@4.0.8:
     dependencies:
       node-gyp-build: 4.8.1
@@ -657,6 +718,8 @@ snapshots:
       function-bind: 1.1.2
       get-intrinsic: 1.2.4
       set-function-length: 1.2.2
+
+  commander@10.0.1: {}
 
   commondir@1.0.1: {}
 
@@ -683,6 +746,8 @@ snapshots:
   depd@2.0.0: {}
 
   destroy@1.2.0: {}
+
+  dotenv@16.4.5: {}
 
   ee-first@1.1.1: {}
 
@@ -819,6 +884,8 @@ snapshots:
   inherits@2.0.4: {}
 
   ipaddr.js@1.9.1: {}
+
+  ipaddr.js@2.2.0: {}
 
   is-core-module@2.15.0:
     dependencies:
@@ -1013,6 +1080,13 @@ snapshots:
       es-errors: 1.3.0
       get-intrinsic: 1.2.4
       object-inspect: 1.13.2
+
+  source-map-support@0.5.21:
+    dependencies:
+      buffer-from: 1.1.2
+      source-map: 0.6.1
+
+  source-map@0.6.1: {}
 
   statuses@2.0.1: {}
 
