@@ -168,7 +168,7 @@ After:
 ```
 - **Note**: don't forget the comma after the ending curly bracket of `dependencies`
 
-**Every time you start it up**:
+**HOW DO I START IT???**:
 You can start it by typing `node server.js` into the terminal window, you can now visit it localy by typing `localhost:Port` into a web browser
 
 - **Note**: The default port is 8080
