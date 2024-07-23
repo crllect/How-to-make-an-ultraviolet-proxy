@@ -1,15 +1,20 @@
-import { createBareServer } from "@tomphttp/bare-server-node";
+import wisp from "wisp-server-node"
+import { uvPath } from "@titaniumnetwork-dev/ultraviolet"
+import { epoxyPath } from "@mercuryworkshop/epoxy-transport"
+import { baremuxPath } from "@mercuryworkshop/bare-mux/node"
 import express from "express";
 import { createServer } from "node:http";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = join(fileURLToPath(import.meta.url), "..");
-const bare = createBareServer("/bare/");
 const app = express();
 const publicPath = "public"; // if you renamed your directory to something else other than public
 
 app.use(express.static(publicPath));
+app.use("/uv/", express.static(uvPath));
+app.use("/epoxy/", express.static(epoxyPath));
+app.use("/baremux/", express.static(baremuxPath));
 
 app.use((req, res) => {
     res.status(404);
@@ -19,19 +24,14 @@ app.use((req, res) => {
 const server = createServer();
 
 server.on("request", (req, res) => {
-    if (bare.shouldRoute(req)) {
-        bare.routeRequest(req, res);
-    } else {
-        app(req, res);
-    }
+     app(req, res);
 });
 
 server.on("upgrade", (req, socket, head) => {
-    if (bare.shouldRoute(req)) {
-        bare.routeUpgrade(req, socket, head);
-    } else {
+    if (req.url.endsWith("/wisp/"))
+        wisp.routeRequest(req, socket, head);
+      else
         socket.end();
-    }
 });
 
 let port = parseInt(process.env.PORT || "");
@@ -55,7 +55,6 @@ process.on("SIGTERM", shutdown);
 function shutdown() {
     console.log("SIGTERM signal received: closing HTTP server");
     server.close();
-    bare.close();
     process.exit(0);
 }
 

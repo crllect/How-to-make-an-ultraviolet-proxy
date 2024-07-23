@@ -1,3 +1,4 @@
+const connection = new BareMux.BareMuxConnection("/baremux/worker.js")
 document // makes it so you can press enter to submit as opposed to just being able to press a button
     .getElementById("urlInput")
     .addEventListener("keydown", function (event) {
@@ -7,7 +8,7 @@ document // makes it so you can press enter to submit as opposed to just being a
         }
     });
 
-document.getElementById("searchButton").onclick = function (event) {
+document.getElementById("searchButton").onclick = async function (event) {
     event.preventDefault();
 
     let url = document.getElementById("urlInput").value; // if no periods are detected in the input, search google instead
@@ -20,6 +21,9 @@ document.getElementById("searchButton").onclick = function (event) {
             url = "https://" + url;
         }
     }
-
+	let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
+	if (await connection.getTransport() !== "/epoxy/index.mjs") {
+		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+	}
     iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
 };
