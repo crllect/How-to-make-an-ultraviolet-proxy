@@ -35,7 +35,7 @@ In your html, add the following to `<head>`
 <script>
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-        navigator.serviceWorker.register("sw.js");
+        navigator.serviceWorker.register("/uv/sw.js");
     });
 }
 </script>
@@ -90,7 +90,6 @@ document.getElementById("searchButton").onclick = async function (event) {
             url = "https://" + url;
         }
     }
-	let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
 	if (!await connection.getTransport()) {
 		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 	}

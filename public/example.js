@@ -23,12 +23,12 @@ document.getElementById("searchButton").onclick = async function (event) {
             url = "https://" + url;
         }
     }
-	let wispUrl = (location.protocol === "https:" ? "wss" : "ws") + "://" + location.host + "/wisp/";
 	if (!await connection.getTransport()) {
 		await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
 	}
     iframeWindow.src = __uv$config.prefix + __uv$config.encodeUrl(url);
 };
+
 document.getElementById("switcher").onselect = async function (event) {
     switch (event.target.value) {
         case "epoxy":
