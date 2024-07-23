@@ -180,4 +180,4 @@ You can start it by typing `node server.js` into the terminal window, you can no
 You cant use websockets on vercel, so you *can* use bare on vercel, but to be completely honest, its not worth it if you want to use UV 3.x.x. The entire appeal of UV 3.x.x is being able to switch bare clients and moving to a more secure system like wisp, which cannot be done in vercel due to the lack of support for websockets because of vercel being a serverless platform.
 
 My recomendation for deploying on vercel, is to use this guide (also by me):
-https://github.com/crllect/UV-in-one-url
+https://github.com/crllect/UV-on-vercel
