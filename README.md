@@ -15,7 +15,7 @@ Clone the template or fork the repo
 
 ## Step 2: Adding/Integrating Frontend
 
-### Adding (a)
+### If you ***DON'T*** have already existing frontend
 
 Place all your frontend code, including assets, inside the `public` directory of the template.
 
@@ -24,7 +24,7 @@ The template, by default has some basic code that shows how to setup a frontend,
 - **Note**: The `.gitignore` in the template already excludes node modules.
 - Open the `server.js` file in the template and modify it according to the instructions provided in the file.
 
-### Integrating (b)
+### If you have already existing frontend
 
 In your html, add the following to `<head>`
 ```html
