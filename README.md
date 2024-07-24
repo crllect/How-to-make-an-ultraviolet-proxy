@@ -2,6 +2,10 @@
 
 This guide covers the setup of Ultraviolet (UV), including creating a new basic frontend or integrating your existing one. If you need assistance, feel free to DM me on Discord @crllect. Huge thanks to @percslol for help with setting up UV and migrating to 3.x.x
 
+## PREFACE
+
+If anything here should be changed, please feel free to submit a pr or dm me directly. If anything here was at all useful, please consider staring the repo, it helps a ton!
+
 ## How Ultraviolet Actually Works
 
 UV has a service worker that handles requests, it also has a rewriter, it intercepts all requests and rewrites them, then returns them. This is called an interception proxy. A bare or wisp server can be hosted, and when a request is sent to the client, it forwards that request to the bare/wisp server, and it gets sent back to ultraviolet so can rewrite and handle that request and serve it back to you.
