@@ -39,3 +39,8 @@
     background-color: aliceblue;
     font-size: 5vh;
 }
+
+#switcher {
+    position: absolute;
+    z-index: 999;
+}
