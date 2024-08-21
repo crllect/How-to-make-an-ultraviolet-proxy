@@ -179,9 +179,11 @@ You can start it by typing `node server.js` into the terminal window, you can no
 
 ## Step 6: Deploying It
 
-*ur fucked ur broke*
+*ur fucked (if ur broke)*
 
 You cant use websockets on vercel, so you *can* use bare on vercel, but to be completely honest, its not worth it if you want to use UV 3.x.x. The entire appeal of UV 3.x.x is being able to switch bare clients and moving to a more secure system like wisp, which cannot be done in vercel due to the lack of support for websockets because of vercel being a serverless platform.
 
 My recomendation for deploying on vercel, is to use this guide (also by me):
 https://github.com/crllect/UV-on-vercel
+
+Now, you *are* willing to pay, almost any hosting service or vps supports node. So if you use a hosting service, you should follow their instructions. If you decide to use a vps, you will need to follow similar steps to a dev build, but you will also need to connect your domain, set everything to public, setup ssl, and other steps. So if you opt for using a vps, you should already know some basic IT consepts.
