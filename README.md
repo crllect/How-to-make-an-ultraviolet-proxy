@@ -186,4 +186,4 @@ You cant use websockets on vercel, so you *can* use bare on vercel, but to be co
 My recomendation for deploying on vercel, is to use this guide (also by me):
 https://github.com/crllect/UV-on-vercel
 
-Now, you *are* willing to pay, almost any hosting service or vps supports node. So if you use a hosting service, you should follow their instructions. If you decide to use a vps, you will need to follow similar steps to a dev build, but you will also need to connect your domain, set everything to public, setup ssl, and other steps. So if you opt for using a vps, you should already know some basic IT consepts.
+Now, if you *are* willing to pay, almost any hosting service or vps supports node. So if you use a hosting service, you should follow their instructions. If you decide to use a vps, you will need to follow similar steps to a dev build, but you will also need to connect your domain, set everything to public, setup ssl, and other steps. So if you opt for using a vps, you should already know some basic IT consepts.
