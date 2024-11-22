@@ -1,5 +1,8 @@
 # How to make a Ultraviolet proxy, or connect it with your frontend
 
+>[!IMPORTANT]
+>THIS IS ONLY FOR UV 3.X, IF YOU CANNOT AFFORD A SERVER, OR WANT TO USE A FREE HOST LIKE VERCEL AND RENDER, FOLLOW THIS [TUTORIAL INSTEAD](https://github.com/crllect/UV-on-vercel)
+
 This guide covers the setup of Ultraviolet (UV), including creating a new basic frontend or integrating your existing one. If you need assistance, feel free to DM me on Discord @crllect. Huge thanks to @percslol for help with migrating to 3.x.x
 
 ## PREFACE
