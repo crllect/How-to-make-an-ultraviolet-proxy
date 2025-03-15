@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Communication</title>
+    <style>
+        iframe {
+            width: 100%;
+            height: 90vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Client Communication with Backend</h1>
+    <form id="urlForm" action="http://localhost:8080/api/process-url" method="POST" target="iframeWindow">
+        <label for="urlInput">Enter URL:</label>
+        <input type="text" id="urlInput" name="url" required>
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <iframe id="iframeWindow" name="iframeWindow"></iframe>
+</body>
+</html>
