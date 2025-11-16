@@ -9,7 +9,7 @@ import { createServer } from "node:http";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const bare = createBareServer("/bare/")
+const bare = createBareServer("/b/")
 const __dirname = join(fileURLToPath(import.meta.url), "..");
 const app = express();
 const publicPath = "public"; // if you renamed your directory to something else other than public
